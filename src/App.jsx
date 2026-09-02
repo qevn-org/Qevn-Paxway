@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
+import Login from './pages/Login';
 import CommandCenter from './pages/CommandCenter';
 import SupportAgent from './pages/SupportAgent';
 import LeadGen from './pages/LeadGen';
@@ -10,7 +11,20 @@ import UsageCostConsole from './pages/UsageCostConsole';
 import Settings from './pages/Settings';
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentScreen, setCurrentScreen] = useState('command-center');
+  const [user, setUser] = useState(null);
+
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    setIsAuthenticated(true);
+    setCurrentScreen('command-center');
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+  };
 
   const getPageTitle = () => {
     switch (currentScreen) {
@@ -31,6 +45,11 @@ export default function App() {
     }
   };
 
+  // If not authenticated, render the GitHub-style split-screen login page
+  if (!isAuthenticated) {
+    return <Login onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <div className="app-container">
       {/* Ambient background glow blobs (Spotify visual signature) */}
@@ -50,6 +69,7 @@ export default function App() {
           title={getPageTitle()} 
           onNavigate={(screenId) => setCurrentScreen(screenId)}
           onTriggerGlobalAction={handleGlobalAction}
+          onLogout={handleLogout}
         />
 
         <main className="page-content">

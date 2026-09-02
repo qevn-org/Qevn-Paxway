@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import { MOCK_LEADS, MOCK_CONVERSATIONS, MOCK_META_CAMPAIGNS, MOCK_INTEGRATIONS } from '../data/mockData';
 
-export default function TopBar({ title, onNavigate, onTriggerGlobalAction }) {
+export default function TopBar({ title, onNavigate, onTriggerGlobalAction, onLogout }) {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfileModal, setShowProfileModal] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -454,6 +454,32 @@ export default function TopBar({ title, onNavigate, onTriggerGlobalAction }) {
                 >
                   <Activity size={14} />
                   <span>Token & Billing Analytics</span>
+                </button>
+
+                <button 
+                  onClick={() => {
+                    if (onLogout) onLogout();
+                    setShowProfileModal(false);
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '8px 10px',
+                    borderRadius: 'var(--radius-sm)',
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#F87171',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    width: '100%',
+                    fontWeight: 600
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(248, 113, 113, 0.1)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}
+                >
+                  <LogOut size={14} />
+                  <span>Sign Out of Paxway</span>
                 </button>
               </div>
 
