@@ -7,9 +7,8 @@ import {
   Network, 
   Coins, 
   Settings, 
-  Layers,
-  Sparkles,
-  ExternalLink
+  Layers, 
+  Sparkles 
 } from 'lucide-react';
 
 export default function Sidebar({ currentScreen, onSelectScreen }) {
@@ -23,16 +22,16 @@ export default function Sidebar({ currentScreen, onSelectScreen }) {
     {
       section: "AI Growth Engines",
       items: [
-        { id: "support-agent", label: "AI Support Agent", icon: Bot, badge: "92% Auto" },
-        { id: "lead-gen", label: "Lead-Gen Scraper", icon: UserSearch, badge: "1.4k Leads" },
-        { id: "meta-ads", label: "Meta Ads Engine", icon: Megaphone, badge: "4.8x ROAS" }
+        { id: "support-agent", label: "AI Support Agent", icon: Bot, badge: "92%" },
+        { id: "lead-gen", label: "Lead-Gen Scraper", icon: UserSearch, badge: "1.4k" },
+        { id: "meta-ads", label: "Meta Ads Engine", icon: Megaphone, badge: "4.8x" }
       ]
     },
     {
       section: "Observability & Platform",
       items: [
-        { id: "integration-hub", label: "Integration Hub", icon: Network, badge: "10 Connected" },
-        { id: "usage-cost", label: "Usage & Cost Console", icon: Coins, badge: "₹0.04/ticket" },
+        { id: "integration-hub", label: "Integration Hub", icon: Network, badge: "10 Live" },
+        { id: "usage-cost", label: "Usage & Cost Console", icon: Coins, badge: "₹0.04" },
         { id: "settings", label: "Settings & Brand", icon: Settings, badge: null }
       ]
     }
@@ -40,10 +39,10 @@ export default function Sidebar({ currentScreen, onSelectScreen }) {
 
   return (
     <aside className="sidebar">
-      {/* Brand Header */}
+      {/* Brand Header (Pinned top) */}
       <div className="sidebar-brand">
         <div className="brand-icon-box">
-          <Layers size={20} strokeWidth={2.5} />
+          <Layers size={18} strokeWidth={2.5} />
         </div>
         <div className="brand-info">
           <div className="brand-name">
@@ -54,10 +53,10 @@ export default function Sidebar({ currentScreen, onSelectScreen }) {
         </div>
       </div>
 
-      {/* Navigation List */}
+      {/* Navigation List (Scrolls independently if needed) */}
       <nav className="sidebar-nav">
         {navItems.map((group, idx) => (
-          <div key={idx} style={{ marginBottom: 8 }}>
+          <div key={idx} style={{ marginBottom: 6 }}>
             <div className="nav-section-label">{group.section}</div>
             {group.items.map((item) => {
               const Icon = item.icon;
@@ -69,8 +68,8 @@ export default function Sidebar({ currentScreen, onSelectScreen }) {
                   className={`nav-item ${isActive ? 'active' : ''}`}
                 >
                   <div className="nav-item-left">
-                    <Icon size={18} strokeWidth={isActive ? 2.5 : 2} />
-                    <span>{item.label}</span>
+                    <Icon size={17} strokeWidth={isActive ? 2.5 : 2} />
+                    <span className="nav-item-title">{item.label}</span>
                   </div>
                   {item.badge && (
                     <span className="nav-item-pill">
@@ -84,7 +83,7 @@ export default function Sidebar({ currentScreen, onSelectScreen }) {
         ))}
       </nav>
 
-      {/* Built by QEVN Footer Credit */}
+      {/* Built by QEVN Footer Credit (Pinned to bottom) */}
       <div className="sidebar-footer">
         <div className="qevn-credit-card">
           <div className="qevn-meta">
